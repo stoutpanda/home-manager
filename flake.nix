@@ -3,24 +3,28 @@
   
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    
+   #home manager required 
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
+    #all theming with stylix  
     stylix = {
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
+    #secrets mgmt with agenix
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    #chaotic nyx for bleeding edge and cachyos optimized pkgs and kernals
+    chaotic = {
+        url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, stylix, agenix, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, stylix, agenix, chaotic, ... }@inputs:
     let
       system = "x86_64-linux"; # Change this to your system
       pkgs = nixpkgs.legacyPackages.${system};
@@ -38,10 +42,11 @@
           ./home.nix
           stylix.homeManagerModules.stylix
           agenix.homeManagerModules.default
+          chaotic.homeManagerModules.default
           {
             home = {
               inherit username homeDirectory;
-              stateVersion = "24.05"; # Please check the latest version
+              stateVersion = "25.05"; # Please check the latest version
             };
           }
         ];
