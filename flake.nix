@@ -13,9 +13,14 @@
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, stylix, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, stylix, agenix, ... }@inputs:
     let
       system = "x86_64-linux"; # Change this to your system
       pkgs = nixpkgs.legacyPackages.${system};
@@ -32,6 +37,7 @@
         modules = [
           ./home.nix
           stylix.homeManagerModules.stylix
+          agenix.homeManagerModules.default
           {
             home = {
               inherit username homeDirectory;
