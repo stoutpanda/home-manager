@@ -22,9 +22,13 @@
     chaotic = {
         url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     };
+    #ghostty terminal emulator
+    ghostty = {
+      url = "github:ghostty-org/ghostty";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, stylix, agenix, chaotic, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, stylix, agenix, chaotic, ghostty, ... }@inputs:
     let
       system = "x86_64-linux"; # Change this to your system
       pkgs = nixpkgs.legacyPackages.${system};
