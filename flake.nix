@@ -1,14 +1,14 @@
 {
   description = "Home Manager configuration for StoutPanda";
-  
+
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-   #home manager required 
+    #home manager required
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    #all theming with stylix  
+    #all theming with stylix
     stylix = {
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -20,7 +20,7 @@
     };
     #chaotic nyx for bleeding edge and cachyos optimized pkgs and kernals
     chaotic = {
-        url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+      url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     };
     #ghostty terminal emulator
     ghostty = {
@@ -28,11 +28,21 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, stylix, agenix, chaotic, ghostty, ... }@inputs:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      stylix,
+      agenix,
+      chaotic,
+      ghostty,
+      ...
+    }@inputs:
     let
       system = "x86_64-linux"; # Change this to your system
       pkgs = nixpkgs.legacyPackages.${system};
-      
+
       # Your username and home directory
       username = "jason"; # Change this to your username
       homeDirectory = "/home/${username}";
@@ -67,7 +77,7 @@
             home-manager switch --flake .#${username}
           ''}";
         };
-        
+
         build = {
           type = "app";
           program = "${pkgs.writeShellScript "build" ''
