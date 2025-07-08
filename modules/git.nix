@@ -16,17 +16,18 @@
       push.autoSetupRemote = true;
       pull.rebase = false;
 
-      # Better diffs
-      diff.algorithm = "histogram";
-
-      # Helpful aliases
-      alias = {
-        st = "status";
-        co = "checkout";
-        br = "branch";
-        ci = "commit";
-        lg = "log --oneline --graph --decorate --all";
       };
     };
+
+  programs.gh = {
+    enable = true;
+    gitCredentialHelper.enable = true;
+      settings = {
+        editor = "nvim";
+        git_protcol = "ssh";
+        };
+    }; 
+
+   programs.lazygit.enable = true;
   };
 }

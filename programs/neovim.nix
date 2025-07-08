@@ -9,7 +9,7 @@
   programs.lazyvim = {
     enable = true;
 
-    # Enable specific LazyVim extras
+    # Enable specific LazyVim extras based on available options
     extras = {
       coding = {
         yanky.enable = true;
@@ -18,19 +18,15 @@
         dial.enable = true;
         inc-rename.enable = true;
       };
-      formatting = {
-        prettier.enable = true;
-      };
       lang = {
-        json.enable = true;
-        markdown.enable = true;
         nix.enable = true;
-        python.enable = true;
-        typescript.enable = true;
-        yaml.enable = true;
       };
-      ui = {
-        mini-indentscope.enable = true;
+      test = {
+        core.enable = true;
+      };
+      util = {
+        dot.enable = true;
+        mini-hipatterns.enable = true;
       };
     };
   };

@@ -8,10 +8,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    #all theming with catppuccin
-    catppuccin = {
-      url = "github:catppuccin/nix";
-    };
     #secrets mgmt with agenix
     agenix = {
       url = "github:ryantm/agenix";
@@ -25,11 +21,6 @@
     ghostty = {
       url = "github:ghostty-org/ghostty";
     };
-    #LazyVim module
-    LazyVim = {
-      url = "github:matadaniel/LazyVim-module";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
@@ -37,42 +28,41 @@
       self,
       nixpkgs,
       home-manager,
-      catppuccin,
       agenix,
       chaotic,
       ghostty,
-      LazyVim,
       ...
     }@inputs:
     let
       system = "x86_64-linux"; # Change this to your system
       pkgs = nixpkgs.legacyPackages.${system};
-
-      # Your username and home directory
-      username = "jason"; # Change this to your username
-      homeDirectory = "/home/${username}";
-    in
-    {
-      homeConfigurations."${username}" = home-manager.lib.homeManagerConfiguration {
+      
+      # Helper function to create a user configuration
+      mkUserConfig = username: home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-
-        # Specify your home configuration modules here
+        
         modules = [
           ./home.nix
-          catppuccin.homeManagerModules.catppuccin
           agenix.homeManagerModules.default
           chaotic.homeManagerModules.default
-          LazyVim.homeManagerModules.LazyVim
           {
-            home = {
-              inherit username homeDirectory;
-              stateVersion = "25.05"; # Please check the latest version
-            };
+            home.stateVersion = "25.05";
           }
         ];
-
-        # Pass special args to your modules
+        
         extraSpecialArgs = { inherit inputs; };
+      };
+    in
+    {
+      # Note: Flake outputs must be statically defined, so we can't use variables here.
+      # To support multiple users, add additional homeConfigurations entries.
+      # The actual username/homeDirectory are set via modules/variables.nix
+      homeConfigurations = {
+        # Default user configuration
+        "jason" = mkUserConfig "jason";
+        
+        # Example: Add more users like this:
+        # "another-user" = mkUserConfig "another-user";
       };
 
       # Convenience scripts for applying configurations
@@ -80,16 +70,16 @@
         default = {
           type = "app";
           program = "${pkgs.writeShellScript "switch" ''
-            home-manager switch --flake .#${username}
+            home-manager switch --flake .#jason
           ''}";
         };
 
         build = {
           type = "app";
           program = "${pkgs.writeShellScript "build" ''
-            home-manager build --flake .#${username}
+            home-manager build --flake .#jason
           ''}";
         };
       };
     };
-}
+

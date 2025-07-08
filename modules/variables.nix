@@ -48,28 +48,5 @@ in
       description = "Work email address";
     };
 
-    address = mkOption {
-      type = types.str;
-      default = "123 Main St";
-      description = "Street address";
-    };
-
-    city = mkOption {
-      type = types.str;
-      default = "Anytown";
-      description = "City";
-    };
-
-    state = mkOption {
-      type = types.str;
-      default = "TX";
-      description = "State/Province";
-    };
-
-    zip = mkOption {
-      type = types.str;
-      default = "12345";
-      description = "ZIP/Postal code";
-    };
   };
 }
