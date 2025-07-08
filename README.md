@@ -14,12 +14,6 @@ This repository contains my Nix Home Manager configuration using flakes.
 │   ├── editor.nix    # Editor configurations
 │   ├── secrets.nix   # Agenix secrets configuration
 │   └── ...
-├── programs/          # Program-specific configurations
-│   ├── git.nix       # Git configuration
-│   ├── tmux.nix      # Tmux configuration
-│   └── ...
-├── services/          # Service configurations
-│   └── ...
 └── secrets/           # Encrypted secrets (using agenix)
     ├── secrets.nix   # Defines who can decrypt secrets
     └── *.age         # Encrypted secret files
