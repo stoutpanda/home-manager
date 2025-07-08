@@ -21,6 +21,10 @@
     ghostty = {
       url = "github:ghostty-org/ghostty";
     };
+    lazyVim = {
+      url = "github:matadaniel/LazyVim-module";
+      inputs.nixpkgs.follows = "nixpkgs";
+      };
   };
 
   outputs =
@@ -31,6 +35,7 @@
       agenix,
       chaotic,
       ghostty,
+      lazyvim,
       ...
     }@inputs:
     let
