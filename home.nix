@@ -12,6 +12,8 @@
     ./modules/variables.nix
     ./modules/git.nix
     ./modules/shell.nix
+    ./modules/theme.nix
+    ./programs/neovim.nix
   ] ++ lib.optional (builtins.pathExists ./private/variables.nix) ./private/variables.nix;
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -77,12 +79,12 @@
   #  /etc/profiles/per-user/jason/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    EDITOR = "nvim";
+    # EDITOR is now set in programs/neovim.nix
   };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-  
+
   # Fix nix.conf generation
   nix.package = pkgs.nix;
 

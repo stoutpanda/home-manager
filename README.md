@@ -32,9 +32,10 @@ This repository contains my Nix Home Manager configuration using flakes.
 - Modules use `mkEnableOption` for optional features
 - Clear separation between programs, services, and system modules
 
-### Theming with Stylix
-- Unified theming solution using Stylix
-- Single source of truth for colors, fonts, and visual settings
+### Theming with Catppuccin
+- Unified theming solution using Catppuccin
+- Global enable for all supported packages with `catppuccin.enable = true`
+- Four flavors available: latte (light), frappe, macchiato, and mocha (dark variants)
 
 ### Secret Management with Agenix
 - Encrypted secrets stored in the repository
@@ -62,7 +63,7 @@ nix flake check
 ## Inspirations
 - [**vimjoyer's flake-starter-config**: Modular structure](https://github.com/vimjoyer/flake-starter-config)
 - [**Mitchell Hashimoto's nixos-config**: Usage of flakes for importing specific software projects](https://github.com/mitchellh/nixos-config)
-- [**Stylix**: Comprehensive theming approach](https://github.com/nix-community/stylix)
+- [**Catppuccin**: Soothing pastel theme](https://github.com/catppuccin/nix)
 - [**fzakaria**: For his Secret's for Dummies in nix guide](https://github.com/fzakaria/nix-home)
 - [**Hydenix Project**: For helping me wrap my head around Hyprland on nixos.](https://github.com/richen604/hydenix) 
 - [Omarchy](https://github.com/basecamp/omarchy) & [DHH:](https://github.com/dhh) For making me aware of [Hyperland](https://github.com/hyprwm/Hyprland)

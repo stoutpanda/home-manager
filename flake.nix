@@ -8,10 +8,9 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    #all theming with stylix
-    stylix = {
-      url = "github:nix-community/stylix";
-      inputs.nixpkgs.follows = "nixpkgs";
+    #all theming with catppuccin
+    catppuccin = {
+      url = "github:catppuccin/nix";
     };
     #secrets mgmt with agenix
     agenix = {
@@ -26,6 +25,11 @@
     ghostty = {
       url = "github:ghostty-org/ghostty";
     };
+    #LazyVim module
+    LazyVim = {
+      url = "github:matadaniel/LazyVim-module";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -33,10 +37,11 @@
       self,
       nixpkgs,
       home-manager,
-      stylix,
+      catppuccin,
       agenix,
       chaotic,
       ghostty,
+      LazyVim,
       ...
     }@inputs:
     let
@@ -54,9 +59,10 @@
         # Specify your home configuration modules here
         modules = [
           ./home.nix
-          stylix.homeManagerModules.stylix
+          catppuccin.homeManagerModules.catppuccin
           agenix.homeManagerModules.default
           chaotic.homeManagerModules.default
+          LazyVim.homeManagerModules.LazyVim
           {
             home = {
               inherit username homeDirectory;

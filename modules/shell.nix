@@ -1,17 +1,26 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   # Enable Fish shell as primary shell
   programs.fish = {
     enable = true;
-    
+
   };
 
   # Enable Bash shell
   programs.bash = {
     enable = true;
     enableCompletion = true;
-    historyControl = [ "erasedups" "ignoredups" "ignorespace" ];
+    historyControl = [
+      "erasedups"
+      "ignoredups"
+      "ignorespace"
+    ];
     historyFileSize = 10000;
     historySize = 10000;
   };
@@ -21,7 +30,7 @@
     enable = true;
     enableBashIntegration = true;
     enableFishIntegration = true;
-    
+
   };
 
   # FZF with shell integrations
@@ -29,13 +38,16 @@
     enable = true;
     enableBashIntegration = true;
     enableFishIntegration = true;
-    
+
     defaultCommand = "fd --type f --hidden --follow --exclude .git";
     # File preview
     fileWidgetCommand = "fd --type f --hidden --follow --exclude .git";
     fileWidgetOptions = [ "--preview 'bat --color=always --line-range=:100 {}'" ];
     # History search
-    historyWidgetOptions = [ "--sort" "--exact" ];
+    historyWidgetOptions = [
+      "--sort"
+      "--exact"
+    ];
     # Directory navigation
     changeDirWidgetCommand = "fd --type d --hidden --follow --exclude .git";
     changeDirWidgetOptions = [ "--preview 'tree -C {} | head -100'" ];
@@ -48,7 +60,7 @@
     enableFishIntegration = true;
     git = true;
     icons = true;
-    
+
     extraOptions = [
       "--group-directories-first"
       "--header"
