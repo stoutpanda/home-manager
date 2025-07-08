@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   inputs,
   ...
 }:
@@ -11,12 +12,12 @@
     ./modules/variables.nix
     ./modules/git.nix
     ./modules/shell.nix
-  ];
+  ] ++ lib.optional (builtins.pathExists ./private/variables.nix) ./private/variables.nix;
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = config.my.variables.username;
-  home.homeDirectory = "/home/${config.my.variables.username}";
+  home.username = config.my.variables.local_user;
+  home.homeDirectory = "/home/${config.my.variables.local_user}";
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -81,6 +82,9 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+  
+  # Fix nix.conf generation
+  nix.package = pkgs.nix;
 
   programs.htop.enable = true;
   programs.btop.enable = true;

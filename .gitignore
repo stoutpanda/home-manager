@@ -8,3 +8,6 @@ result-*
 # Agenix decrypted secrets (never commit these!)
 .config/agenix/
 .config/agenix.d/
+
+# Private variables file (contains personal information)
+private/variables.nix
