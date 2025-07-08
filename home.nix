@@ -13,7 +13,7 @@
     ./modules/git.nix
     ./modules/shell.nix
     ./modules/theme.nix
-    ./programs/neovim.nix
+    ./modules/neovim.nix
   ]
 #importing privae variables. 
  ++ lib.optional (builtins.pathExists ./private/variables.nix) ./private/variables.nix;
