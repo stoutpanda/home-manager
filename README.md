@@ -66,4 +66,5 @@ nix flake check
 - [**fzakaria**: For his Secret's for Dummies in nix guide](https://github.com/fzakaria/nix-home)
 - [**Hydenix Project**: For helping me wrap my head around Hyprland on nixos.](https://github.com/richen604/hydenix) 
 - [Omarchy](https://github.com/basecamp/omarchy) & [DHH:](https://github.com/dhh) For making me aware of [Hyperland](https://github.com/hyprwm/Hyprland)
+- [Surma's Nix Explained from the Ground Up Video](https://www.youtube.com/watch?v=5D3nUU1OVx8)
 
