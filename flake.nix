@@ -25,6 +25,10 @@
       url = "github:matadaniel/LazyVim-module";
       inputs.nixpkgs.follows = "nixpkgs";
       };
+    #catppuccin theming
+    catppuccin = {
+      url = "github:catppuccin/nix";
+    };
   };
 
   outputs =
@@ -36,6 +40,7 @@
       chaotic,
       ghostty,
       lazyVim,
+      catppuccin,
       ...
     }@inputs:
     let
@@ -50,6 +55,8 @@
           ./home.nix
           agenix.homeManagerModules.default
           chaotic.homeManagerModules.default
+          catppuccin.homeModules.catppuccin
+          lazyVim.homeManagerModules.default
           {
             home.stateVersion = "25.05";
           }

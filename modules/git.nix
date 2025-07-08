@@ -22,12 +22,11 @@
   programs.gh = {
     enable = true;
     gitCredentialHelper.enable = true;
-      settings = {
-        editor = "nvim";
-        git_protcol = "ssh";
-        };
-    }; 
+    settings = {
+      editor = "nvim";
+      git_protcol = "ssh";
+    };
+  }; 
 
-   programs.lazygit.enable = true;
-  };
+  programs.lazygit.enable = true;
 }
