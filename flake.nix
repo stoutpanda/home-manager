@@ -35,7 +35,7 @@
       agenix,
       chaotic,
       ghostty,
-      lazyvim,
+      lazyVim,
       ...
     }@inputs:
     let
@@ -87,4 +87,4 @@
         };
       };
     };
-
+}
