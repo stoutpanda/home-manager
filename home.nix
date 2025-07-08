@@ -14,6 +14,7 @@
     ./modules/shell.nix
     ./modules/theme.nix
     ./modules/neovim.nix
+    ./modules/de/default.nix
   ]
 #importing privae variables. 
  ++ lib.optional (builtins.pathExists ./private/variables.nix) ./private/variables.nix;
@@ -35,9 +36,6 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
-    # Ghostty terminal emulator
-    inputs.ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default
-
     # System tools
     pkgs.wget
     pkgs.curl
