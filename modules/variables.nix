@@ -48,5 +48,23 @@ in
       description = "Work email address";
     };
 
+    personal_gmail = mkOption {
+      type = types.str;
+      default = "personal@gmail.com";
+      description = "Personal Gmail address";
+    };
+
+    tdfw_email = mkOption {
+      type = types.str;
+      default = "tdfw@example.com";
+      description = "TDFW email address";
+    };
+
+    email_servers = mkOption {
+      type = types.attrs;
+      default = {};
+      description = "Email server configurations";
+    };
+
   };
 }

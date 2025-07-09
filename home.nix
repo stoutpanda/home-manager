@@ -40,18 +40,19 @@
     pkgs.wget
     pkgs.curl
     pkgs.vim
+    pkgs.helix
     pkgs.bitwarden-cli
     pkgs.sqlite
     pkgs.asciinema
     pkgs.du-dust
     pkgs.xh
     pkgs.p7zip
-    pkgs.nerdfonts.override { fonts =
-        [ "FiraCode"
-          "FiraMono"
-          "NerdFontsSymbolsOnly"
-            ];
-        };
+    pkgs.inetutils
+    pkgs.tcpdump
+    pkgs.nmap
+    pkgs.nerd-fonts.fira-code
+    pkgs.nerd-fonts.fira-mono
+    pkgs.nerd-fonts.symbols-only
   ];
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.

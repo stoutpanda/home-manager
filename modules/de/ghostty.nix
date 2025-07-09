@@ -11,8 +11,15 @@ let
 in
 {
   config = mkIf cfg.enable {
-    home.packages = [
-      inputs.ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default
-    ];
+    programs.ghostty = {
+      enable = true;
+      package = inputs.ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default;
+      enableFishIntegration = true;
+      enableBashIntegration = true;
+      settings = {
+        font-family = "FiraMono";
+        font-size = 12;
+      };
+    };
   };
 }

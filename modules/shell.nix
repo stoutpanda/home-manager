@@ -9,7 +9,10 @@
   # Enable Fish shell as primary shell
   programs.fish = {
     enable = true;
-
+    interactiveShellInit = ''
+      # Set as default shell indicator
+      set -g fish_greeting
+    '';
   };
 
   # Enable Bash shell
@@ -59,7 +62,7 @@
     enableBashIntegration = true;
     enableFishIntegration = true;
     git = true;
-    icons = true;
+    icons = "auto";
 
     extraOptions = [
       "--group-directories-first"
