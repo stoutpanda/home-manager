@@ -34,6 +34,8 @@
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    #zen-browser
+    zen-browser.url = "github:MarceColl/zen-browser-flake";
   };
 
   outputs =
@@ -47,6 +49,7 @@
       lazyVim,
       catppuccin,
       firefox-addons,
+      zen-browser,
       ...
     }@inputs:
     let
