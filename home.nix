@@ -93,4 +93,15 @@
   programs.jq.enable = true;
   programs.ripgrep.enable = true;
   programs.lazygit.enable = true;
+
+  # Browser configuration
+  modules.browsers = {
+    enable = true;
+    defaultBrowser = "firefox";
+    
+    firefox.enable = true;
+    chromium.enable = true;
+    brave.enable = true;
+    ladybird.enable = true;
+  };
 }

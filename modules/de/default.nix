@@ -13,6 +13,7 @@ in
   imports = [
     ./ghostty.nix
     ./bitwarden.nix
+    ./browsers/default.nix
   ];
 
   options.my.desktop = {
