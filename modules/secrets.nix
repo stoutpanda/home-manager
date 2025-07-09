@@ -14,6 +14,7 @@
     secretsMountPoint = "${config.xdg.configHome}/agenix.d";
 
     # Define your secrets here
+    # Note: Email and other sensitive secrets are now defined in the private flake
     secrets = {
       # Keep only truly sensitive runtime secrets
       # Example: GitHub token

@@ -36,6 +36,13 @@
     };
     #zen-browser
     zen-browser.url = "github:MarceColl/zen-browser-flake";
+    
+    # Private secrets and variables
+    # Use --override-input to specify local path or private git URL
+    private-secrets = {
+      url = "git+ssh://git@github.com/stoutpanda/home-manager-private.git";
+      flake = true;
+    };
   };
 
   outputs =
@@ -50,6 +57,7 @@
       catppuccin,
       firefox-addons,
       zen-browser,
+      private-secrets,
       ...
     }@inputs:
     let
@@ -66,6 +74,7 @@
           chaotic.homeManagerModules.default
           catppuccin.homeModules.catppuccin
           lazyVim.homeManagerModules.default
+          private-secrets.homeManagerModules.default
           {
             home.stateVersion = "25.05";
           }

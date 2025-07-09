@@ -17,4 +17,6 @@ in
   # Keep only truly sensitive runtime secrets here
   # "github-token.age".publicKeys = users ++ systems;
   # "ssh-key.age".publicKeys = users ++ systems;
+  
+  # Note: Email and other sensitive secrets are now in the private flake
 }

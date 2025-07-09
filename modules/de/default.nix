@@ -1,9 +1,8 @@
-{
-  config,
-  lib,
-  pkgs,
-  inputs,
-  ...
+{ config
+, lib
+, pkgs
+, inputs
+, ...
 }:
 with lib;
 let
@@ -14,6 +13,7 @@ in
     ./ghostty.nix
     ./bitwarden.nix
     ./browsers/default.nix
+    ./thunderbird.nix
   ];
 
   options.my.desktop = {

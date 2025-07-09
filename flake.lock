@@ -383,6 +383,21 @@
         "type": "github"
       }
     },
+    "private-secrets": {
+      "locked": {
+        "lastModified": 1752094512,
+        "narHash": "sha256-W3L2LRu1Sdvj46K6m1XA5CxLmTASHQNvG3+bJ+SrlRw=",
+        "ref": "refs/heads/main",
+        "rev": "760a7c69b1624917aaedaa938a708cb5c499597f",
+        "revCount": 2,
+        "type": "git",
+        "url": "ssh://git@github.com/stoutpanda/home-manager-private.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@github.com/stoutpanda/home-manager-private.git"
+      }
+    },
     "root": {
       "inputs": {
         "agenix": "agenix",
@@ -393,6 +408,7 @@
         "home-manager": "home-manager_3",
         "lazyVim": "lazyVim",
         "nixpkgs": "nixpkgs_4",
+        "private-secrets": "private-secrets",
         "zen-browser": "zen-browser"
       }
     },
