@@ -46,6 +46,12 @@
     pkgs.du-dust
     pkgs.xh
     pkgs.p7zip
+    pkgs.nerdfonts.override { fonts =
+        [ "FiraCode"
+          "FiraMono"
+          "NerdFontsSymbolsOnly"
+            ];
+        };
   ];
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
@@ -84,6 +90,7 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+  fonts.fontconfig.enable = true;
 
   # Fix nix.conf generation
   nix.package = pkgs.nix;
@@ -94,14 +101,4 @@
   programs.ripgrep.enable = true;
   programs.lazygit.enable = true;
 
-  # Browser configuration
-  modules.browsers = {
-    enable = true;
-    defaultBrowser = "firefox";
-    
-    firefox.enable = true;
-    chromium.enable = true;
-    brave.enable = true;
-    ladybird.enable = true;
-  };
 }

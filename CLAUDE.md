@@ -47,6 +47,7 @@ This is a Nix Home Manager configuration project using flakes for user environme
 - Apply changes: `home-manager switch --flake .#jason`
 - Check flake: `nix flake check`
 - Update inputs: `nix flake update`
+- **Dry Run Tip**: Always use `home-manager build` for a dry run before `switch`
 
 ### Formatting and Linting
 - Format all Nix files: `nixfmt .`
@@ -230,3 +231,6 @@ agenix -r
 3. Build fails? Check `home-manager news` for breaking changes
 4. Unexpected behavior? Review recent commits
 5. Performance issues? Profile with `nix-store --optimise`
+
+## Tips and Tricks
+- **Dry Run Best Practice**: Always use dry run only on home-manager rebuilds to verify changes before applying
