@@ -17,6 +17,7 @@ in
     ./chromium.nix
     ./brave.nix
     ./ladybird.nix
+    ./zen-browser.nix
   ];
 
   options.modules.browsers = {

@@ -63,6 +63,7 @@ let
     "https://github.com"
     "https://news.ycombinator.com"
     "https://claude.ai"
+    "https://boardgamegeek.com"
   ];
 in
 {
@@ -96,13 +97,13 @@ in
               id = 1;
               name = "Personal";
               icon = "fingerprint";
-              color = "blue";
+              color = "yellow";
             };
             social = {
               id = 2;
               name = "Social";
               icon = "fence";
-              color = "green";
+              color = "blue";
             };
             shopping = {
               id = 3;
@@ -114,7 +115,7 @@ in
               id = 4;
               name = "Banking";
               icon = "dollar";
-              color = "red";
+              color = "green";
             };
           };
 
