@@ -14,6 +14,7 @@ in
     ./bitwarden.nix
     ./browsers/default.nix
     ./thunderbird.nix
+    ./chat.nix
   ];
 
   options.my.desktop = {

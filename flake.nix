@@ -37,6 +37,9 @@
     #zen-browser
     zen-browser.url = "github:MarceColl/zen-browser-flake";
     
+    #iamb matrix client
+    iamb.url = "github:ulyssa/iamb/latest";
+    
     # Private secrets and variables
     # Use --override-input to specify local path or private git URL
     private-secrets = {
@@ -57,6 +60,7 @@
       catppuccin,
       firefox-addons,
       zen-browser,
+      iamb,
       private-secrets,
       ...
     }@inputs:
