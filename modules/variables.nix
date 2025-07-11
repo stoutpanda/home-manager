@@ -31,7 +31,7 @@ in
 
     code_user = mkOption {
       type = types.str;
-      default = "StoutPanda";
+      default = "stoutpanda";
       description = "GitHub/GitLab username";
     };
 

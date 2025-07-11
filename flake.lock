@@ -474,11 +474,11 @@
     },
     "private-secrets": {
       "locked": {
-        "lastModified": 1752197575,
-        "narHash": "sha256-CcIkUxwfgQi0RJb4kbLEoT4ALjIugPD7yid6vXusL/M=",
+        "lastModified": 1752201211,
+        "narHash": "sha256-Xc07eGnSOVuYH9X9G/Y4qEZD4dMsivb6stfq3cD6D6Y=",
         "ref": "refs/heads/main",
-        "rev": "8332cc99142c085c766b42e3af5e0a2c580c4054",
-        "revCount": 4,
+        "rev": "aeaa9464137d0ba4abd36436b295c06096ecc5ab",
+        "revCount": 5,
         "type": "git",
         "url": "ssh://git@github.com/stoutpanda/home-manager-private.git"
       },
