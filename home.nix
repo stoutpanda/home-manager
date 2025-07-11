@@ -94,6 +94,9 @@
 
   # Fix nix.conf generation
   nix.package = pkgs.nix;
+  
+  # Allow unfree packages (like teamspeak3)
+  nixpkgs.config.allowUnfree = true;
 
   programs.htop.enable = true;
   programs.btop.enable = true;
