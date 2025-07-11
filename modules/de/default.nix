@@ -13,7 +13,6 @@ in
     ./ghostty.nix
     ./bitwarden.nix
     ./browsers/default.nix
-    ./thunderbird.nix
     ./chat.nix
   ];
 

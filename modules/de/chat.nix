@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }:
 with lib;
@@ -13,7 +14,7 @@ in
     home.packages = [
       pkgs.teamspeak3
       pkgs.discord
-      config.inputs.iamb.packages.${pkgs.system}.default
+      inputs.iamb.packages.${pkgs.system}.default
     ];
   };
 }
