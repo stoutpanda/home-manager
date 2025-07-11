@@ -52,6 +52,8 @@
     pkgs.nerd-fonts.fira-mono
     pkgs.nerd-fonts.symbols-only
     pkgs.gptfdisk
+    pkgs.claude-code
+    pkgs.codex
   ];
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
