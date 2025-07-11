@@ -8,7 +8,7 @@
 {
   programs.git = {
     enable = true;
-    userName = config.my.variables.full_name;
+    userName = config.my.variables.code_user;
     userEmail = config.my.variables.code_email;
 
     extraConfig = {
