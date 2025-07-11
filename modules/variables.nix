@@ -42,12 +42,6 @@ in
       description = "Personal email address";
     };
 
-    work_email = mkOption {
-      type = types.str;
-      default = "work@example.com";
-      description = "Work email address";
-    };
-
     personal_gmail = mkOption {
       type = types.str;
       default = "personal@gmail.com";
