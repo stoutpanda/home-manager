@@ -15,8 +15,20 @@
       init.defaultBranch = "main";
       push.autoSetupRemote = true;
       pull.rebase = false;
-
+      
+      # Use SSH for git operations
+      url = {
+        "ssh://git@github.com/" = {
+          insteadOf = "https://github.com/";
+        };
+        "ssh://git@gitlab.com/" = {
+          insteadOf = "https://gitlab.com/";
+        };
+        "ssh://git@bitbucket.org/" = {
+          insteadOf = "https://bitbucket.org/";
+        };
       };
+    };
     };
 
   programs.gh = {
@@ -24,7 +36,7 @@
     gitCredentialHelper.enable = true;
     settings = {
       editor = "nvim";
-      git_protcol = "ssh";
+      git_protocol = "ssh";
     };
   }; 
 
