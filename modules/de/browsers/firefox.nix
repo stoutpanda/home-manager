@@ -81,10 +81,7 @@ in
           name = "Personal";
           isDefault = true;
 
-          extensions = {
-            packages = commonExtensions;
-            force = true;
-          };
+          extensions = commonExtensions;
 
           search = {
             default = "ddg";
@@ -161,10 +158,7 @@ in
           id = 1;
           name = "Development";
 
-          extensions = {
-            packages = commonExtensions;
-            force = true;
-          };
+          extensions = commonExtensions;
 
           search = {
             default = "ddg";
