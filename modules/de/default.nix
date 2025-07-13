@@ -14,6 +14,7 @@ in
     ./bitwarden.nix
     ./browsers/default.nix
     ./chat.nix
+    ./hyprland.nix
   ];
 
   options.my.desktop = {
