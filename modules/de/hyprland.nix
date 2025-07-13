@@ -442,7 +442,6 @@
   programs.rofi = {
     enable = true;
     package = pkgs.rofi-wayland;
-    theme = "catppuccin-mocha";
     extraConfig = {
       modi = "drun,run,window";
       show-icons = true;
