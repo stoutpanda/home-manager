@@ -43,7 +43,6 @@ in
       browsers = [
         "firefox"
         "chromium"
-        "brave"
       ];
     };
   };
