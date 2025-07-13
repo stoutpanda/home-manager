@@ -14,8 +14,12 @@
     ./modules/shell.nix
     ./modules/theme.nix
     ./modules/neovim.nix
+    ./modules/keyring.nix
     ./modules/de/default.nix
   ];
+  
+  # Enable browsers module (includes Profile Sync Daemon)
+  modules.browsers.enable = true;
   
   # Home Manager needs a bit of information about you and the paths it should
   # manage.

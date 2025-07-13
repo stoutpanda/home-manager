@@ -23,6 +23,8 @@
         "wl-paste --type image --watch cliphist store"
         "nm-applet --indicator"
         "blueman-applet"
+        "obsidian"
+        "rog-control-center"
       ];
 
       # Input configuration
@@ -125,6 +127,7 @@
         "workspace 6, class:^(libreoffice)$"
         "workspace 6, class:^(okular)$"
         "workspace 6, class:^(evince)$"
+        "workspace 6, class:^(obsidian)$"
         
         # Workspace 7: Development Tools
         "workspace 7, class:^(code)$"
@@ -138,6 +141,9 @@
         "workspace 9, class:^(Steam)$"
         "workspace 9, class:^(steam)$"
         "workspace 9, class:^(heroic)$"
+        
+        # Workspace 10: System Control
+        "workspace 10, class:^(rog-control-center)$"
         
         # Float rules
         "float, class:^(pavucontrol)$"
