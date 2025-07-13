@@ -1,17 +1,19 @@
 { config, lib, pkgs, ... }:
 
 {
-  # Enable GNOME Keyring for managing secrets
+  # User-level GNOME Keyring configuration
+  # System-level service and PAM are configured in the NixOS module
+  
+  # Enable user components for GNOME Keyring
   services.gnome-keyring = {
     enable = true;
     components = [ "pkcs11" "secrets" "ssh" ];
   };
 
-  # Ensure gnome-keyring package is installed
+  # GUI tools for managing keyrings
   home.packages = with pkgs; [
-    gnome-keyring
-    libgnome-keyring
     seahorse  # GUI for managing keyrings
+    # Note: gnome-keyring and libgnome-keyring are provided by system
   ];
 
   # Set up environment variables for keyring

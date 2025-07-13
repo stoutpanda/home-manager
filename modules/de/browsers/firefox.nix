@@ -119,7 +119,7 @@ in
           settings = {
             # General settings
             "browser.startup.homepage" = lib.concatStringsSep "|" startupPages;
-            "browser.startup.page" = 3; # Restore previous session
+            "browser.startup.page" = 1; # Show homepage on startup
             "browser.download.dir" = "${config.home.homeDirectory}/Downloads";
             "browser.download.useDownloadDir" = true;
 
