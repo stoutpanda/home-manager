@@ -83,6 +83,7 @@ in
 
           extensions = {
             packages = commonExtensions;
+            force = true;
           };
 
           search = {
@@ -162,6 +163,7 @@ in
 
           extensions = {
             packages = commonExtensions;
+            force = true;
           };
 
           search = {
