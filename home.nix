@@ -23,7 +23,6 @@
   modules.browsers.firefox.enable = true;
   modules.browsers.brave.enable = true;
   modules.browsers.chromium.enable = true;
-  modules.browsers.zen-browser.enable = true;
   modules.browsers.ladybird.enable = true;
   
   # Home Manager needs a bit of information about you and the paths it should
