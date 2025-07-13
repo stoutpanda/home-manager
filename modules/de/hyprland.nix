@@ -11,7 +11,7 @@
       "$browser" = "firefox";
 
       # Monitor configuration - adjust as needed
-      monitor = ",preferred,auto,1";
+      monitor = ",preferred,auto,2";
 
       # Execute on startup
       exec-once = [
