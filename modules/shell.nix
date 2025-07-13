@@ -10,8 +10,9 @@
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
-      # Set as default shell indicator
-      set -g fish_greeting
+      function fish_greeting
+	fastfetch
+      end
     '';
   };
 
@@ -69,6 +70,8 @@
       "--header"
     ];
   };
+  # fsatfetch for the little screen promo
+  programs.fastfetch.enable = true;
 
   # Add useful shell packages
   home.packages = with pkgs; [
