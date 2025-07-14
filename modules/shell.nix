@@ -11,7 +11,7 @@
     enable = true;
     interactiveShellInit = ''
             function fish_greeting
-      	neofetch
+      	fastfetch
             end
     '';
   };
@@ -71,7 +71,7 @@
     ];
   };
   # fsatfetch for the little screen promo
-  programs.neofetch.enable = true;
+  programs.fastfetch.enable = true;
 
   # Add useful shell packages
   home.packages = with pkgs; [

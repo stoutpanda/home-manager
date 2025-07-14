@@ -74,9 +74,6 @@ in
   config = mkIf cfg.enable {
     programs.firefox = {
       enable = true;
-      catppuccin = {
-        enable = true;
-      };
       profiles = {
         default = {
           id = 0;
@@ -153,6 +150,7 @@ in
             "signon.rememberSignons" = false;
             "signon.autofillForms" = false;
             "signon.generation.enabled" = false;
+            "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
           };
         };
 
