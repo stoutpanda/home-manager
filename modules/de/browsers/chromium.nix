@@ -18,7 +18,7 @@ in
   config = mkIf cfg.enable {
     programs.chromium = {
       enable = true;
-
+      catppuccin = true;
       # Extensions from Chrome Web Store
       extensions = [
         { id = "nngceckbapebfimnlniiiahkandclblb"; } # Bitwarden

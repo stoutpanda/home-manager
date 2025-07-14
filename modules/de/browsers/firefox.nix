@@ -74,6 +74,8 @@ in
   config = mkIf cfg.enable {
     programs.firefox = {
       enable = true;
+      catppuccin = {
+        enable = true;
 
       profiles = {
         default = {
