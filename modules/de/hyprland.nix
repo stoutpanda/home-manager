@@ -263,8 +263,8 @@
 
   # Hyprpaper configuration
   home.file.".config/hypr/hyprpaper.conf".text = ''
-    preload = ~/Pictures/wallpaper.png
-    wallpaper = ,~/Pictures/wallpaper.png
+    preload = ~/Documents/wallpapers/wallpaper.png
+    wallpaper = ,~/Documents/wallpapers/wallpaper.png
     splash = false
     ipc = off
   '';

@@ -141,11 +141,8 @@ in
             # Enable containers
             "privacy.userContext.enabled" = true;
             "privacy.userContext.ui.enabled" = true;
-
-            # Theme - Catppuccin will handle this
-            "extensions.activeThemeID" = "firefox-compact-dark@mozilla.org";
-
-            # Performance
+           
+	     # Performance
             "gfx.webrender.all" = true;
             "media.ffmpeg.vaapi.enabled" = true;
             "media.hardware-video-decoding.force-enabled" = true;

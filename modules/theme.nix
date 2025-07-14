@@ -10,5 +10,5 @@
   catppuccin.enable = true;
 
   # Set the flavor (latte, frappe, macchiato, mocha)
-  catppuccin.flavor = "mocha";
+  catppuccin.flavor = "macchiato";
 }
