@@ -16,10 +16,12 @@
     #chaotic nyx for bleeding edge and cachyos optimized pkgs and kernals
     chaotic = {
       url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     #ghostty terminal emulator
     ghostty = {
       url = "github:ghostty-org/ghostty";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     lazyVim = {
       url = "github:matadaniel/LazyVim-module";
@@ -28,6 +30,7 @@
     #catppuccin theming
     catppuccin = {
       url = "github:catppuccin/nix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     #firefox extensions
     firefox-addons = {
@@ -35,7 +38,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     #zen-browser
-    zen-browser.url = "github:MarceColl/zen-browser-flake";
+    zen-browser = {
+      url = "github:MarceColl/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     
     #iamb matrix client
     iamb.url = "github:ulyssa/iamb/latest";
