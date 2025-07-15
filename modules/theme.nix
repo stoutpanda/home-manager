@@ -11,6 +11,7 @@
   # Set the flavor (latte, frappe, macchiato, mocha)
   catppuccin.flavor = "macchiato";
 
+  # Firefox-specific Catppuccin configuration
   catppuccin.firefox.profiles = {
     # These need to match the profile names in your firefox.nix
     default = {

@@ -191,6 +191,9 @@ in
             "signon.rememberSignons" = false;
             "signon.autofillForms" = false;
             "signon.generation.enabled" = false;
+            
+            # Enable custom stylesheets for Catppuccin theme
+            "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
           };
         };
       };
