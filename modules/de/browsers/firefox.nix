@@ -154,48 +154,6 @@ in
           };
         };
 
-        dev = {
-          id = 1;
-          name = "Development";
-
-          extensions = {
-            packages = commonExtensions;
-            force = true;
-          };
-
-          search = {
-            default = "ddg";
-            engines = searchEngines;
-            force = true;
-          };
-
-          settings = {
-            # Same basic settings as personal profile
-            "browser.startup.homepage" = lib.concatStringsSep "|" startupPages;
-            "browser.startup.page" = 3;
-            "browser.download.dir" = "${config.home.homeDirectory}/Downloads";
-            "browser.download.useDownloadDir" = true;
-
-            # Privacy & Security
-            "network.trr.mode" = 3;
-            "network.trr.uri" = "https://cloudflare-dns.com/dns-query";
-            "network.trr.custom_uri" = "https://cloudflare-dns.com/dns-query";
-
-            # Developer tools always enabled
-            "devtools.enabled" = true;
-            "devtools.chrome.enabled" = true;
-            "devtools.debugger.remote-enabled" = true;
-            "devtools.theme" = "dark";
-
-            # Disable password saving prompts
-            "signon.rememberSignons" = false;
-            "signon.autofillForms" = false;
-            "signon.generation.enabled" = false;
-            
-            # Enable custom stylesheets for Catppuccin theme
-            "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-          };
-        };
       };
 
       # Enable GNOME native messaging host if using GNOME
