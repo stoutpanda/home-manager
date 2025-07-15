@@ -20,9 +20,6 @@
       # flavor = "macchiato";
       # accent = "mauve";
     };
-    dev = {
-      enable = true;
-    };
   };
 
 }
