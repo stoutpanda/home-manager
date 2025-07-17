@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-master.url = "github:nixos/nixpkgs/master";
     #home manager required
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -58,6 +59,7 @@
     {
       self,
       nixpkgs,
+      nixpkgs-master,
       home-manager,
       agenix,
       chaotic,
@@ -72,7 +74,18 @@
     }@inputs:
     let
       system = "x86_64-linux"; # Change this to your system
-      pkgs = nixpkgs.legacyPackages.${system};
+      
+      # Create overlay to use msmtp from nixpkgs-master
+      overlays = [
+        (final: prev: {
+          msmtp = nixpkgs-master.legacyPackages.${system}.msmtp;
+        })
+      ];
+      
+      pkgs = import nixpkgs {
+        inherit system overlays;
+        config.allowUnfree = true;
+      };
       
       # Helper function to create a user configuration
       mkUserConfig = username: home-manager.lib.homeManagerConfiguration {

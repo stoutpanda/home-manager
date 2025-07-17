@@ -16,7 +16,7 @@ in
     ./firefox.nix
     ./chromium.nix
     ./brave.nix
-    ./ladybird.nix
+    #    ./ladybird.nix
     ./zen-browser.nix
   ];
 
