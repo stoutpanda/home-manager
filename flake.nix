@@ -16,7 +16,7 @@
     };
     #chaotic nyx for bleeding edge and cachyos optimized pkgs and kernals
     chaotic = {
-      url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+      url = "https://flakehub.com/f/chaotic-cx/nyx/*.tar.gz";#"github:chaotic-cx/nyx/nyxpkgs-unstable";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     #ghostty terminal emulator
