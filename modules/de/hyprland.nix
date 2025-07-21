@@ -365,95 +365,16 @@
         };
       };
     };
-    
-    style = ''
-      * {
-        font-family: "JetBrainsMono Nerd Font", FontAwesome, sans-serif;
-        font-size: 13px;
-      }
-      
-      window#waybar {
-        background-color: rgba(30, 30, 46, 0.9);
-        color: #cdd6f4;
-        transition-property: background-color;
-        transition-duration: .5s;
-      }
-      
-      button {
-        box-shadow: inset 0 -3px transparent;
-        border: none;
-        border-radius: 0;
-      }
-      
-      button:hover {
-        background: inherit;
-        box-shadow: inset 0 -3px #cdd6f4;
-      }
-      
-      #workspaces button {
-        padding: 0 5px;
-        background-color: transparent;
-        color: #cdd6f4;
-      }
-      
-      #workspaces button:hover {
-        background: rgba(0, 0, 0, 0.2);
-      }
-      
-      #workspaces button.active {
-        background-color: #313244;
-        box-shadow: inset 0 -3px #f5c2e7;
-      }
-      
-      #workspaces button.urgent {
-        background-color: #f38ba8;
-      }
-      
-      #clock,
-      #battery,
-      #cpu,
-      #memory,
-      #temperature,
-      #network,
-      #pulseaudio,
-      #tray {
-        padding: 0 10px;
-        margin: 0 4px;
-        color: #cdd6f4;
-      }
-      
-      #battery.charging, #battery.plugged {
-        color: #a6e3a1;
-      }
-      
-      #battery.critical:not(.charging) {
-        background-color: #f38ba8;
-        color: #1e1e2e;
-      }
-      
-      #network.disconnected {
-        background-color: #f38ba8;
-      }
-      
-      #pulseaudio.muted {
-        background-color: #313244;
-        color: #a6adc8;
-      }
-      
-      #temperature.critical {
-        background-color: #f38ba8;
-      }
-    '';
   };
 
   # Rofi configuration
   programs.rofi = {
     enable = true;
     package = pkgs.rofi-wayland;
+    terminal = "${pkgs.ghostty}/bin/ghostty";
     extraConfig = {
       modi = "drun,run,window";
       show-icons = true;
-      terminal = "kitty";
       drun-display-format = "{icon} {name}";
       location = 0;
       disable-history = false;
@@ -464,6 +385,9 @@
       sidebar-mode = true;
     };
   };
+  
+  # Enable Catppuccin theming for Rofi
+  catppuccin.rofi.enable = true;
 
   # Dunst configuration
   services.dunst = {
