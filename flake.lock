@@ -385,11 +385,11 @@
     },
     "nixpkgs-master": {
       "locked": {
-        "lastModified": 1753060416,
-        "narHash": "sha256-nvpr5HcwZDwP/mNUQHd3MIk7ds9tdtH8ZQUEY8WgNus=",
+        "lastModified": 1753063281,
+        "narHash": "sha256-oyMdHukQttVOQL4nFYbtHBTpF7EAGyjei/MVIG3F3Sg=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "8bf4f5ba2a6a7ef1a6b49782b6a0735a2f0004c2",
+        "rev": "4ce2065f6ef71f574fcd00533ab5e2f9e61b4895",
         "type": "github"
       },
       "original": {
@@ -433,11 +433,11 @@
     },
     "private-secrets": {
       "locked": {
-        "lastModified": 1753061093,
-        "narHash": "sha256-bOsnWF+HSbwnYHA9Ar7fHW4+fh2TcZ0IR11s2TqHGQo=",
+        "lastModified": 1753063284,
+        "narHash": "sha256-E49Nhx0ZvBIxI0i3zh7pCy9vM3jV1+QkBAcHXdozhK4=",
         "ref": "refs/heads/main",
-        "rev": "da8e4d3f527ecc007b600e4cdaa815fae6204a40",
-        "revCount": 11,
+        "rev": "504e4a376fb1c5573df9f026ae7eda370b81be13",
+        "revCount": 12,
         "type": "git",
         "url": "ssh://git@github.com/stoutpanda/home-manager-private.git"
       },
