@@ -75,10 +75,11 @@
     let
       system = "x86_64-linux"; # Change this to your system
       
-      # Create overlay to use msmtp from nixpkgs-master
+      # Overlay for pulling packages from nixpkgs-master when needed (e.g., build fixes)
       overlays = [
         (final: prev: {
-          msmtp = nixpkgs-master.legacyPackages.${system}.msmtp;
+          # Add packages here that need to be pulled from nixpkgs-master
+          # Example: packageName = nixpkgs-master.legacyPackages.${system}.packageName;
         })
       ];
       
