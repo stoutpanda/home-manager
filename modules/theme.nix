@@ -22,4 +22,14 @@
     };
   };
 
+  # Waybar-specific Catppuccin configuration
+  # This is needed because Waybar requires explicit CSS styling
+  catppuccin.waybar = {
+    enable = true;
+    # mode can be "prependImport" (default) or "createLink"
+    # prependImport adds @import to your existing style
+    # createLink creates a symlink to the catppuccin CSS
+    mode = "createLink";
+  };
+
 }
