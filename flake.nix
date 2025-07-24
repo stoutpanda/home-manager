@@ -73,24 +73,25 @@
       ...
     }@inputs:
     let
-      system = "x86_64-linux"; # Change this to your system
+      # Helper function for multi-system support
+      forAllSystems = nixpkgs.lib.genAttrs nixpkgs.lib.systems.flakeExposed;
       
-      # Overlay for pulling packages from nixpkgs-master when needed (e.g., build fixes)
-      overlays = [
-        (final: prev: {
-          # Add packages here that need to be pulled from nixpkgs-master
-          # Example: packageName = nixpkgs-master.legacyPackages.${system}.packageName;
-        })
-      ];
-      
-      pkgs = import nixpkgs {
-        inherit system overlays;
+      # Function to get pkgs for a specific system
+      pkgsFor = system: import nixpkgs {
+        inherit system;
+        overlays = [
+          # Overlay for pulling packages from nixpkgs-master when needed (e.g., build fixes)
+          (final: prev: {
+            # Add packages here that need to be pulled from nixpkgs-master
+            # Example: packageName = nixpkgs-master.legacyPackages.${system}.packageName;
+          })
+        ];
         config.allowUnfree = true;
       };
       
       # Helper function to create a user configuration
-      mkUserConfig = username: home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
+      mkUserConfig = system: username: home-manager.lib.homeManagerConfiguration {
+        pkgs = pkgsFor system;
         
         modules = [
           ./home.nix
@@ -112,28 +113,36 @@
       # To support multiple users, add additional homeConfigurations entries.
       # The actual username/homeDirectory are set via modules/variables.nix
       homeConfigurations = {
-        # Default user configuration
-        "jason" = mkUserConfig "jason";
+        # Default user configuration for x86_64-linux
+        "jason" = mkUserConfig "x86_64-linux" "jason";
         
         # Example: Add more users like this:
-        # "another-user" = mkUserConfig "another-user";
+        # "another-user" = mkUserConfig "x86_64-linux" "another-user";
+        
+        # Example: Add ARM64 support:
+        # "jason@aarch64" = mkUserConfig "aarch64-linux" "jason";
       };
 
       # Convenience scripts for applying configurations
-      apps.${system} = {
-        default = {
-          type = "app";
-          program = "${pkgs.writeShellScript "switch" ''
-            home-manager switch --flake .#jason
-          ''}";
-        };
+      apps = forAllSystems (system:
+        let
+          pkgs = pkgsFor system;
+        in
+        {
+          default = {
+            type = "app";
+            program = "${pkgs.writeShellScript "switch" ''
+              home-manager switch --flake .#jason
+            ''}";
+          };
 
-        build = {
-          type = "app";
-          program = "${pkgs.writeShellScript "build" ''
-            home-manager build --flake .#jason
-          ''}";
-        };
-      };
+          build = {
+            type = "app";
+            program = "${pkgs.writeShellScript "build" ''
+              home-manager build --flake .#jason
+            ''}";
+          };
+        }
+      );
     };
 }
