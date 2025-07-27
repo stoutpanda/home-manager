@@ -14,6 +14,9 @@
       	fastfetch
             end
     '';
+    shellAliases = {
+      vim = "nvim";
+    };
   };
 
   # Enable Bash shell
