@@ -12,6 +12,20 @@
 
       # Monitor configuration - adjust as needed
       monitor = ",preferred,auto,2";
+      
+      # Environment variables for better performance
+      env = [
+        "XCURSOR_SIZE,24"
+        "WLR_DRM_NO_ATOMIC,1"
+        "WLR_RENDERER_ALLOW_SOFTWARE,1"
+        "__GL_GSYNC_ALLOWED,1"
+        "__GL_VRR_ALLOWED,1"
+        "WLR_DRM_NO_ATOMIC,1"
+        "LIBVA_DRIVER_NAME,nvidia"
+        "XDG_SESSION_TYPE,wayland"
+        "GBM_BACKEND,nvidia-drm"
+        "__GLX_VENDOR_LIBRARY_NAME,nvidia"
+      ];
 
       # Execute on startup
       exec-once = [
@@ -52,14 +66,25 @@
       decoration = {
         rounding = 10;
         blur = {
-          enabled = false;
+          enabled = true;
+          size = 6;
+          passes = 3;
+          new_optimizations = true;
+          xray = true;
+          contrast = 1.0;
+          brightness = 1.0;
+          noise = 0.02;
         };
         shadow = {
           enabled = true;
-          range = 4;
+          range = 20;
           render_power = 3;
           color = "rgba(1a1a2aee)";
+          offset = "0 15";
         };
+        active_opacity = 0.95;
+        inactive_opacity = 0.9;
+        fullscreen_opacity = 1.0;
       };
 
       # Animations - minimal and fast
@@ -95,6 +120,12 @@
       misc = {
         force_default_wallpaper = 0;
         disable_hyprland_logo = true;
+        vfr = true; # Variable frame rate - saves battery
+        vrr = 1; # Variable refresh rate
+        mouse_move_enables_dpms = true; # Wake screen on mouse move
+        key_press_enables_dpms = true; # Wake screen on key press
+        enable_swallow = true; # Window swallowing
+        swallow_regex = "^(kitty|ghostty|alacritty)$";
       };
 
       # Window rules for workspace assignment
@@ -161,6 +192,28 @@
         # Size rules for floating windows
         "size 800 600, class:^(pavucontrol)$"
         "center, class:^(pavucontrol)$"
+        
+        # Opacity rules
+        "opacity 0.9 0.85, class:^(kitty)$"
+        "opacity 0.9 0.85, class:^(ghostty)$"
+        "opacity 0.95 0.9, class:^(code)$"
+        "opacity 0.95 0.9, class:^(obsidian)$"
+        
+        # Animation rules
+        "animation slide, class:^(rofi)$"
+        "animation popin 80%, class:^(dolphin)$"
+        
+        # Gaming rules
+        "fullscreen, class:^(steam_app).*"
+        "immediate, class:^(steam_app).*"
+        "noblur, class:^(steam_app).*"
+        "noshadow, class:^(steam_app).*"
+        
+        # Picture-in-Picture
+        "float, title:^(Picture-in-Picture)$"
+        "pin, title:^(Picture-in-Picture)$"
+        "size 640 360, title:^(Picture-in-Picture)$"
+        "move 100%-660 100%-380, title:^(Picture-in-Picture)$"
       ];
 
       # Keybindings
@@ -251,6 +304,19 @@
         
         # Clipboard history
         "$mod, C, exec, cliphist list | rofi -dmenu | cliphist decode | wl-copy"
+        
+        # Window management
+        "$mod, Tab, cyclenext"
+        "$mod SHIFT, Tab, cyclenext, prev"
+        "$mod, G, togglegroup"
+        "$mod SHIFT, G, changegroupactive"
+        "$mod, R, exec, hyprctl reload"
+        "$mod SHIFT, F, togglefloating"
+        "$mod, O, fullscreenstate, 2"
+        
+        # Layout switching
+        "$mod, D, exec, hyprctl keyword general:layout dwindle"
+        "$mod, M, exec, hyprctl keyword general:layout master"
       ];
       
       # Mouse bindings
@@ -276,78 +342,172 @@
       mainBar = {
         layer = "top";
         position = "top";
-        height = 30;
+        height = 35;
         spacing = 4;
+        margin-top = 5;
+        margin-left = 10;
+        margin-right = 10;
         
-        modules-left = ["hyprland/workspaces" "hyprland/window"];
-        modules-center = ["clock"];
-        modules-right = ["pulseaudio" "network" "cpu" "memory" "temperature" "battery" "tray"];
+        modules-left = ["hyprland/workspaces" "hyprland/submap" "custom/separator" "hyprland/window"];
+        modules-center = ["clock" "custom/weather"];
+        modules-right = ["idle_inhibitor" "backlight" "pulseaudio" "network" "cpu" "memory" "temperature" "battery" "custom/notification" "tray"];
         
         "hyprland/workspaces" = {
           disable-scroll = true;
           all-outputs = true;
-          format = "{name}";
+          format = "{icon}";
           format-icons = {
             "1" = "";
             "2" = "";
             "3" = "";
             "4" = "";
             "5" = "";
+            "6" = "";
+            "7" = "";
+            "8" = "";
+            "9" = "";
+            "10" = "";
             urgent = "";
-            focused = "";
+            active = "";
             default = "";
           };
+          persistent-workspaces = {
+            "*" = [1 2 3 4 5];
+          };
+          on-click = "activate";
         };
         
         "hyprland/window" = {
           max-length = 50;
+          separate-outputs = true;
+          rewrite = {
+            "(.*) — Mozilla Firefox" = "🌐 $1";
+            "(.*) - ghostty" = " $1";
+            "(.*) - Dolphin" = "📁 $1";
+            "(.*) - Discord" = "💬 $1";
+          };
+        };
+        
+        "hyprland/submap" = {
+          format = "<span style=\"italic\">{}</span>";
+          tooltip = false;
+        };
+        
+        "custom/separator" = {
+          format = "|";
+          interval = "once";
+          tooltip = false;
         };
         
         clock = {
           timezone = "America/Chicago";
+          interval = 1;
+          format = " {:%H:%M:%S}";
+          format-alt = " {:%A, %B %d, %Y}";
           tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
-          format-alt = "{:%Y-%m-%d}";
+          calendar = {
+            mode = "year";
+            mode-mon-col = 3;
+            weeks-pos = "right";
+            on-scroll = 1;
+            format = {
+              months = "<span color='#ffead3'><b>{}</b></span>";
+              days = "<span color='#ecc6d9'><b>{}</b></span>";
+              weeks = "<span color='#99ffdd'><b>W{}</b></span>";
+              weekdays = "<span color='#ffcc66'><b>{}</b></span>";
+              today = "<span color='#ff6699'><b><u>{}</u></b></span>";
+            };
+          };
+          actions = {
+            on-click-right = "mode";
+            on-scroll-up = "shift_up";
+            on-scroll-down = "shift_down";
+          };
+        };
+        
+        "custom/weather" = {
+          exec = "curl -s 'wttr.in/?format=1'";
+          interval = 3600;
+          format = "{}";
         };
         
         cpu = {
           format = " {usage}%";
-          tooltip = false;
+          interval = 2;
+          format-alt = " {avg_frequency} GHz";
+          tooltip = true;
+          tooltip-format = "Load: {load}\nFrequency: {avg_frequency} GHz";
         };
         
         memory = {
-          format = " {}%";
+          interval = 2;
+          format = " {percentage}%";
+          format-alt = " {used:0.1f}G/{total:0.1f}G";
+          tooltip = true;
+          tooltip-format = "RAM: {used:0.1f}G / {total:0.1f}G\nSwap: {swapUsed:0.1f}G / {swapTotal:0.1f}G";
         };
         
         temperature = {
+          thermal-zone = 2;
+          hwmon-path = "/sys/class/hwmon/hwmon2/temp1_input";
           critical-threshold = 80;
           format = " {temperatureC}°C";
+          format-critical = " {temperatureC}°C";
+          tooltip = true;
         };
         
         battery = {
           states = {
+            good = 95;
             warning = 30;
             critical = 15;
           };
           format = "{icon} {capacity}%";
           format-charging = " {capacity}%";
           format-plugged = " {capacity}%";
-          format-alt = "{time} {icon}";
+          format-alt = "{icon} {time}";
           format-icons = ["" "" "" "" ""];
+          tooltip = true;
+          tooltip-format = "{capacity}% - {timeTo}\nPower: {power}W";
+        };
+        
+        "idle_inhibitor" = {
+          format = "{icon}";
+          format-icons = {
+            activated = "";
+            deactivated = "";
+          };
+          tooltip = true;
+          tooltip-format-activated = "Idle inhibitor active";
+          tooltip-format-deactivated = "Idle inhibitor inactive";
+        };
+        
+        "backlight" = {
+          format = "{icon} {percent}%";
+          format-icons = [""];
+          on-scroll-up = "brightnessctl set +5%";
+          on-scroll-down = "brightnessctl set 5%-";
+          tooltip = true;
         };
         
         network = {
-          format-wifi = " {essid}";
+          format-wifi = " {signalStrength}%";
           format-ethernet = " {ipaddr}";
           format-linked = " {ifname}";
-          format-disconnected = "Disconnected ⚠";
-          format-alt = "{ifname}: {ipaddr}/{cidr}";
+          format-disconnected = " Disconnected";
+          format-alt = "{essid} ({signalStrength}%)";
+          tooltip = true;
+          tooltip-format = "Interface: {ifname}\nIP: {ipaddr}\nGateway: {gwaddr}\nSSID: {essid}\nFrequency: {frequency} MHz\nSignal: {signalStrength}%";
+          on-click-right = "nm-connection-editor";
         };
         
         pulseaudio = {
           format = "{icon} {volume}%";
-          format-bluetooth = "{volume}% {icon} {format_source}";
-          format-bluetooth-muted = " {icon} {format_source}";
-          format-muted = " {format_source}";
+          format-bluetooth = "{icon} {volume}% ";
+          format-bluetooth-muted = " ";
+          format-muted = "";
+          format-source = " {volume}%";
+          format-source-muted = "";
           format-icons = {
             headphone = "";
             hands-free = "";
@@ -358,13 +518,163 @@
             default = ["" "" ""];
           };
           on-click = "pavucontrol";
+          on-click-right = "pamixer -t";
+          on-scroll-up = "pamixer -i 5";
+          on-scroll-down = "pamixer -d 5";
+          tooltip = true;
+          tooltip-format = "{desc} - {volume}%";
+        };
+        
+        "custom/notification" = {
+          tooltip = false;
+          format = "{icon}";
+          format-icons = {
+            notification = "<span foreground='red'><sup></sup></span>";
+            none = "";
+            dnd-notification = "<span foreground='red'><sup></sup></span>";
+            dnd-none = "";
+          };
+          return-type = "json";
+          exec = ''
+            dbus-monitor "interface='org.freedesktop.Notifications'" |
+            grep --line-buffered "string" |
+            grep --line-buffered -e method_call -e ":" |
+            grep --line-buffered "member=Notify" |
+            sed -u -e 's/^.*$/{"class": "notification"}/g' -e '1s/^.*$/{"class": "none"}/g'
+          '';
+          on-click = "dunstctl history-pop";
+          on-click-right = "dunstctl close-all";
         };
         
         tray = {
+          icon-size = 18;
           spacing = 10;
+          reverse-direction = true;
         };
       };
     };
+    style = ''
+      * {
+        font-family: "JetBrainsMono Nerd Font";
+        font-size: 13px;
+        min-height: 0;
+      }
+      
+      window#waybar {
+        background: transparent;
+        color: #cdd6f4;
+      }
+      
+      .modules-left,
+      .modules-center,
+      .modules-right {
+        background: rgba(30, 30, 46, 0.85);
+        border-radius: 10px;
+        padding: 0 10px;
+        margin: 0 5px;
+      }
+      
+      #workspaces button {
+        padding: 0 8px;
+        margin: 0 2px;
+        color: #cdd6f4;
+        background: transparent;
+        border: none;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+      }
+      
+      #workspaces button:hover {
+        background: rgba(108, 112, 134, 0.5);
+        box-shadow: inset 0 -3px #cba6f7;
+      }
+      
+      #workspaces button.active {
+        background: rgba(203, 166, 247, 0.2);
+        color: #cba6f7;
+        box-shadow: inset 0 -3px #cba6f7;
+      }
+      
+      #workspaces button.urgent {
+        background: rgba(243, 139, 168, 0.2);
+        color: #f38ba8;
+        animation: urgent-blink 1s linear infinite;
+      }
+      
+      @keyframes urgent-blink {
+        50% { background: rgba(243, 139, 168, 0.4); }
+      }
+      
+      #clock,
+      #battery,
+      #cpu,
+      #memory,
+      #temperature,
+      #network,
+      #pulseaudio,
+      #backlight,
+      #tray,
+      #idle_inhibitor,
+      #custom-weather,
+      #custom-notification {
+        padding: 0 10px;
+        margin: 0 2px;
+      }
+      
+      #window {
+        margin-left: 10px;
+        font-weight: 500;
+      }
+      
+      #battery.charging {
+        color: #a6e3a1;
+      }
+      
+      #battery.warning:not(.charging) {
+        color: #f9e2af;
+      }
+      
+      #battery.critical:not(.charging) {
+        background-color: #f38ba8;
+        color: #1e1e2e;
+        animation: critical-blink 1s linear infinite;
+      }
+      
+      @keyframes critical-blink {
+        50% { background-color: rgba(243, 139, 168, 0.5); }
+      }
+      
+      #network.disconnected {
+        color: #f38ba8;
+      }
+      
+      #pulseaudio.muted {
+        color: #6c7086;
+      }
+      
+      #temperature.critical {
+        color: #f38ba8;
+      }
+      
+      #idle_inhibitor.activated {
+        color: #f9e2af;
+      }
+      
+      #custom-separator {
+        color: #6c7086;
+        margin: 0 5px;
+      }
+      
+      tooltip {
+        background: rgba(30, 30, 46, 0.95);
+        border: 1px solid #cba6f7;
+        border-radius: 10px;
+      }
+      
+      tooltip label {
+        color: #cdd6f4;
+      }
+    '';
   };
 
   # Rofi configuration
